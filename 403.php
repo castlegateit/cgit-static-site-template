@@ -6,7 +6,7 @@ $pageinfo = array(
     'description' => '',
 );
 
-include $_SERVER['DOCUMENT_ROOT'] . '/../common/header.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 
 ?>
 
@@ -20,5 +20,5 @@ include $_SERVER['DOCUMENT_ROOT'] . '/../common/header.php';
 
 <?php
 
-include $_SERVER['DOCUMENT_ROOT'] . '/../common/side.php';
-include $_SERVER['DOCUMENT_ROOT'] . '/../common/footer.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/side.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php';

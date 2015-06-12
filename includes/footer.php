@@ -8,7 +8,7 @@
 
 <script src="/static/js/common.js"></script>
 
-<?php include $_SERVER['DOCUMENT_ROOT'] . '/../common/analytics.php'; ?>
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/analytics.php'; ?>
 
 </body>
 

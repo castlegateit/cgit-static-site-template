@@ -6,8 +6,8 @@ $pageinfo = array(
     'description' => 'A template for static sites in PHP.',
 );
 
-include $_SERVER['DOCUMENT_ROOT'] . '/../common/header.php';
-include $_SERVER['DOCUMENT_ROOT'] . '/../common/contact.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/contact.php';
 
 ?>
 
@@ -64,5 +64,5 @@ include $_SERVER['DOCUMENT_ROOT'] . '/../common/contact.php';
 
 <?php
 
-include $_SERVER['DOCUMENT_ROOT'] . '/../common/side.php';
-include $_SERVER['DOCUMENT_ROOT'] . '/../common/footer.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/side.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/footer.php';

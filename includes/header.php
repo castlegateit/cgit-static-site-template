@@ -1,7 +1,7 @@
 <?php
 
-include $_SERVER['DOCUMENT_ROOT'] . '/../common/functions.php';
-include $_SERVER['DOCUMENT_ROOT'] . '/../common/config.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/functions.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/includes/config.php';
 
 $title       = $pageinfo['title']       ?: $siteinfo['title'];
 $description = $pageinfo['description'] ?: $siteinfo['description'];
