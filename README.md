@@ -31,4 +31,4 @@ The default title, heading, and description are entered in the `$siteinfo` array
 
 ### Logs ###
 
-By default, the contact form will log submissions to `sitelogs/contact.csv` below the document root directory. You may need to set the permissions on this directory to `777` to make this work.
+By default, the contact form will log submissions to `/logs/contact.csv` in the document root directory. You may need to set the permissions on this directory to `777` to make this work. Note that this directory is hidden using `.htaccess`.
