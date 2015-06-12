@@ -1,0 +1,5 @@
+RewriteEngine On
+RewriteBase /
+
+# Block access and return 404
+RewriteRule .* - [R=404,L]
