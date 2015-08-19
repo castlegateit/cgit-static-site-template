@@ -13,11 +13,6 @@ AddDefaultCharset UTF-8
 # Remove index.php
 RewriteRule ^(.*)index\.(html|php) $1 [R=301,L]
 
-# Remove extension
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}\.php -f
-RewriteRule ^([^\.]+)/$ $1.php
-
 # Force trailing slash
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
@@ -31,3 +26,11 @@ ErrorDocument 404 /404.php
 RewriteRule ^\.git.* - [R=404,L]
 RewriteRule ^LICENSE$ - [R=404,L]
 RewriteRule ^README\.md$ - [R=404,L]
+
+# Remove extension
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^([^\.]+)/$ $1.php [END]
+
+# Block direct .php access
+RewriteRule \.php$ - [R=404]
