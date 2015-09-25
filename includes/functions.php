@@ -8,6 +8,7 @@
  */
 function cgit_obfuscate($str) {
 
+    $str = html_entity_decode($str);
     $output = '';
     $forbidden = array('@', '.', ':');
 
