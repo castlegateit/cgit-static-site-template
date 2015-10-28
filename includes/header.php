@@ -26,7 +26,7 @@ $heading     = $pageinfo['heading']     ?: $siteinfo['heading'];
 
 <div class="header" role="banner">
 
-    <h1><a href="/"><?php echo $title; ?></a></h1>
+    <h1><a href="/"><?php echo $heading; ?></a></h1>
 
     <div class="nav" role="navigation">
         <ul><?php
