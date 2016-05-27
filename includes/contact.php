@@ -8,7 +8,7 @@ define('EMAIL_CC', '');
 define('EMAIL_BCC', '');
 define('EMAIL_FROM', 'example@example.com');
 define('EMAIL_SUBJECT', 'Website Enquiry');
-define('EMAIL_LOG', $_SERVER['DOCUMENT_ROOT'] . '/../sitelogs/contact.csv');
+define('EMAIL_LOG', $_SERVER['DOCUMENT_ROOT'] . '/logs/contact.csv');
 
 /**
  * Blocked IPs
