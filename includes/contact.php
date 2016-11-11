@@ -153,7 +153,8 @@ if (!empty($_POST)) {
             "Sender IP: $sender";
 
         // Assemble message headers
-        $email_headers  = "From: $name <$email>"; // alternatively EMAIL_FROM
+        $email_headers  = "From: ".EMAIL_FROM;
+        $email_headers .= "\nReply-To: $name <$email>";
         $email_headers .= EMAIL_CC != '' ? "\nCc:" . EMAIL_CC : '';
         $email_headers .= EMAIL_BCC != '' ? "\nBcc:" . EMAIL_BCC : '';
 
@@ -162,7 +163,7 @@ if (!empty($_POST)) {
         // $email_headers .= "\nContent-Type: text/html; charset=UTF-8";
 
         // Send message
-        $email_result = mail(EMAIL_TO, EMAIL_SUBJECT, $email_body, $email_headers);
+        $email_result = mail(EMAIL_TO, EMAIL_SUBJECT, $email_body, $email_headers, '-f'.EMAIL_FROM);
 
         // Write to log file
         if (defined('EMAIL_LOG') && function_exists('fputcsv')) {
