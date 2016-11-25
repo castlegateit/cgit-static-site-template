@@ -49,7 +49,7 @@ $config_mail = [
     'log' => $_SERVER['DOCUMENT_ROOT'] . '/../logs/contact.csv',
 
      // Enable or disable verbose error messages.
-    'debug' => true,
+    'debug' => false,
 
      // Enable or disable HTML email.
     'html' => false,
