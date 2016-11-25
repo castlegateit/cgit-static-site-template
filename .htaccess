@@ -26,6 +26,8 @@ ErrorDocument 404 /404/
 RewriteRule ^\.git.* - [R=404,L]
 RewriteRule ^LICENSE$ - [R=404,L]
 RewriteRule ^README\.md$ - [R=404,L]
+RewriteRule ^composer\.(json|lock)$ - [R=404,L]
+RewriteRule ^vendor/*$ - [R=404,L]
 
 # Remove extension
 RewriteCond %{REQUEST_FILENAME} !-d
