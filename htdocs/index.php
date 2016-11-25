@@ -1,10 +1,10 @@
 <?php
 
-$pageinfo = array(
+$page_info = [
     'title'       => 'Static Site Template',
     'heading'     => 'Static Site Template',
     'description' => 'A template for static sites in PHP.',
-);
+];
 
 include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 

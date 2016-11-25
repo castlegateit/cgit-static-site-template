@@ -1,10 +1,10 @@
 <?php
 
-$pageinfo = array(
+$page_info = [
     'title'       => 'Contact | Static Site Template',
     'heading'     => 'Contact | Static Site Template',
     'description' => 'A template for static sites in PHP.',
-);
+];
 
 include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 include $_SERVER['DOCUMENT_ROOT'] . '/includes/contact.php';
@@ -17,13 +17,15 @@ include $_SERVER['DOCUMENT_ROOT'] . '/includes/contact.php';
 
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
-<?php if ($done): ?>
+<?php if ($done) : ?>
         <p class="message success">Your message has been sent. Thank you.</p>
-<?php else: ?>
+<?php else : ?>
 
-<?php if (array_key_exists('spam', $error)): ?>
+<?php if (array_key_exists('spam', $error)) : ?>
         <p class="message error">Your message appears to be spam. Please remove any links and try again.</p>
-<?php elseif (count($error)): ?>
+<?php elseif (array_key_exists('send', $error)) : ?>
+        <p class="message error">There was a problem sending your message. Please try again later.</p>
+<?php elseif (count($error)) : ?>
         <p class="message error">Some fields contain errors. Please correct them and try again.</p>
 <?php endif; ?>
 

@@ -1,36 +1,128 @@
 <?php
 
+$mail = new PHPMailer;
+
 /**
- * Settings and definitions
+ * Configure email debugging.
  */
-define('EMAIL_TO', $siteinfo['form_email']);
-define('EMAIL_CC', '');
-define('EMAIL_BCC', '');
-define('EMAIL_FROM', 'example@example.com');
-define('EMAIL_SUBJECT', 'Website Enquiry');
-define('EMAIL_LOG', $_SERVER['DOCUMENT_ROOT'] . '/../logs/contact.csv');
+if ($config_mail['debug']) {
+    $mail->SMTPDebug = 3;
+}
+
+/**
+ * Enable SMTP.
+ */
+$mail->isSMTP();
+
+/**
+ * SMTP host.
+ */
+$mail->Host = $config_smtp['host'];
+
+/**
+ * SMTP username.
+ */
+$mail->Username = $config_smtp['user'];
+
+/**
+ * SMTP password.
+ */
+$mail->Password = $config_smtp['pass'];
+
+/**
+ * SMTP port.
+ */
+$mail->Port = $config_smtp['port'];
+
+/**
+ * SMTP authentication
+ */
+$mail->SMTPAuth = $config_smtp['auth'];
+
+/**
+ * SMTP encryption.
+ */
+if ($config_smtp['encryption'] !== false) {
+    $mail->SMTPSecure = $config_smtp['encryption'];
+}
+
+/**
+ * Subject.
+ */
+$mail->Subject = $config_mail['subject'];
+
+/**
+ * From address.
+ */
+$mail->setFrom($config_mail['from']['address'], $config_mail['from']['name']);
+
+/**
+ * Reply to.
+ */
+if ($config_mail['reply-to']['address'] !== false) {
+    if ($config_mail['reply-to']['name']) {
+        $mail->addReplyTo($config_mail['reply-to']['address'], $config_mail['reply-to']['name']);
+    } else {
+        $mail->addReplyTo($config_mail['reply-to']['address']);
+    }
+}
+
+/**
+ * To.
+ */
+if (!empty($config_mail['to'])) {
+    foreach ($config_mail['to'] as $to) {
+        $mail->addAddress($to);
+    }
+}
+
+/**
+ * CC.
+ */
+if (!empty($config_mail['cc'])) {
+    foreach ($config_mail['cc'] as $email) {
+        $mail->addCC($email);
+    }
+}
+
+/**
+ * BCC.
+ */
+if (!empty($config_mail['bcc'])) {
+    foreach ($config_mail['bcc'] as $email) {
+        $mail->addBCC($email);
+    }
+}
+
+/**
+ * Configure HTML email.
+ */
+if ($config_mail['html']) {
+    $mail->isHTML(true);
+}
+
 
 /**
  * Blocked IPs
  */
-$blocked_ips = array(
-    '31.184.238.52',
-);
+$blocked_ips = [
+    // '31.184.238.52',
+];
 
 /**
  * Contact form fields
  */
-$fields = array(
+$fields = [
     'name',
     'email',
     'subject',
     'message',
-);
+];
 
 /**
  * Array to hold errors
  */
-$error = array();
+$error = [];
 
 /**
  * Check whether form is completed and sent
@@ -41,51 +133,42 @@ $done = false;
  * Function to print input class name on validation
  */
 function cgit_input_valid($field_name) {
-
     global $error;
 
     if (!empty($_POST)) {
-
         if (array_key_exists($field_name, $error)) {
             return 'invalid';
         }
 
         return 'valid';
-
     }
-
 }
 
 /**
  * Function to print error message
  */
 function cgit_error_message($field_name) {
-
     global $error;
 
     if (array_key_exists($field_name, $error)) {
         return "<span class='error'>{$error[$field_name]}</span>";
     }
-
 }
 
 /**
  * Clean POST data and assign to named variables
  */
 foreach ($fields as $key => $value) {
-
     $data = isset($_POST[$value]) ? $_POST[$value] : '';
     $data = trim($data);
     $data = stripslashes($data); // prevent escaped quotes and slashes
     $$value = $data;
-
 }
 
 /**
  * Validate submitted data and send if no errors
  */
 if (!empty($_POST)) {
-
     /**
      * Check required fields
      */
@@ -98,10 +181,9 @@ if (!empty($_POST)) {
     // Check email
     if (empty($email)) {
         $error['email'] = 'This is a required field';
-    } elseif(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $error['email'] = 'Please enter a valid email address';
     } else {
-
         // Verify domain is valid
         list($addr,$domain) = explode('@', $email);
         $domain .= '.';
@@ -109,7 +191,6 @@ if (!empty($_POST)) {
         if (!checkdnsrr($domain, 'MX') && !checkdnsrr($domain, 'A')) {
             $error['email'] = 'Please enter a valid email address';
         }
-
     }
 
     // Check message
@@ -141,43 +222,38 @@ if (!empty($_POST)) {
      * output is also written to a log file.
      */
     if (count($error) == 0) {
-
         // Sender IP
         $sender = $_SERVER['REMOTE_ADDR'];
 
         // Assemble message body
-        $email_body = "Name: $name\n\n" .
+        $mail->Body = "Name: $name\n\n" .
             "Email: $email\n\n" .
             "Subject: $subject\n\n" .
             "Message:\n\n$message\n\n" .
             "Sender IP: $sender";
 
-        // Assemble message headers
-        $email_headers  = "From: ".EMAIL_FROM;
-        $email_headers .= "\nReply-To: $name <$email>";
-        $email_headers .= EMAIL_CC != '' ? "\nCc:" . EMAIL_CC : '';
-        $email_headers .= EMAIL_BCC != '' ? "\nBcc:" . EMAIL_BCC : '';
-
-        // Send HTML email
-        // $email_headers .= "\nMIME-Version: 1.0";
-        // $email_headers .= "\nContent-Type: text/html; charset=UTF-8";
+        // Alternative body in plain text for non HTML mail clients when HTML is used.
+        //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
         // Send message
-        $email_result = mail(EMAIL_TO, EMAIL_SUBJECT, $email_body, $email_headers, '-f'.EMAIL_FROM);
+        $email_result = $mail->send();
 
-        // Write to log file
-        if (defined('EMAIL_LOG') && function_exists('fputcsv')) {
+        // Did the email send?
+        if ($email_result) {
+            // Write to log file
+            if (defined('EMAIL_LOG') && function_exists('fputcsv')) {
+                $log = fopen(EMAIL_LOG, 'a');
+                $row = array(date('Y-m-d H:i'), $name, $email, $message, $sender);
 
-            $log = fopen(EMAIL_LOG, 'a');
-            $row = array(date('Y-m-d H:i'), $name, $tel, $email, $message, $sender);
+                fputcsv($log, $row);
+            }
 
-            fputcsv($log, $row);
-
+            // Completed
+            $done = true;
+        } else {
+            // Email was not sent due to an error.
+            $done = false;
+            $error['send'] = 'error';
         }
-
-        // Completed
-        $done = true;
-
     }
-
 }

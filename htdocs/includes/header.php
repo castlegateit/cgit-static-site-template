@@ -1,11 +1,12 @@
 <?php
 
+include $_SERVER['DOCUMENT_ROOT'] . '/../vendor/autoload.php';
 include $_SERVER['DOCUMENT_ROOT'] . '/includes/functions.php';
 include $_SERVER['DOCUMENT_ROOT'] . '/includes/config.php';
 
-$title       = $pageinfo['title']       ?: $siteinfo['title'];
-$description = $pageinfo['description'] ?: $siteinfo['description'];
-$heading     = $pageinfo['heading']     ?: $siteinfo['heading'];
+$title       = $page_info['title']       ?: $config_site['title'];
+$description = $page_info['description'] ?: $config_site['description'];
+$heading     = $page_info['heading']     ?: $config_site['heading'];
 
 ?><!DOCTYPE html>
 

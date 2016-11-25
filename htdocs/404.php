@@ -1,10 +1,10 @@
 <?php
 
-$pageinfo = array(
+$page_info = [
     'title'       => 'Page not found',
     'heading'     => 'Page not found',
     'description' => '',
-);
+];
 
 include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 

@@ -1,10 +1,10 @@
 <?php
 
-$pageinfo = array(
+$page_info = [
     'title'       => 'Access denied',
     'heading'     => 'Access denied',
     'description' => '',
-);
+];
 
 include $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 
