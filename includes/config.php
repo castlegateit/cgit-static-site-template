@@ -46,7 +46,7 @@ $config_smtp = [
 $config_mail = [
 
      // Email log file
-    'log' => $_SERVER['DOCUMENT_ROOT'] . '/../logs/contact.csv',
+    'log' => $_SERVER['DOCUMENT_ROOT'] . '/logs/contact.csv',
 
      // Enable or disable verbose error messages.
     'debug' => false,

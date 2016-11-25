@@ -1,6 +1,6 @@
 <?php
 
-include $_SERVER['DOCUMENT_ROOT'] . '/../vendor/autoload.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 include $_SERVER['DOCUMENT_ROOT'] . '/includes/functions.php';
 include $_SERVER['DOCUMENT_ROOT'] . '/includes/config.php';
 
