@@ -129,6 +129,14 @@ $error = [];
  */
 $done = false;
 
+
+/*
+ * Create Email Log files
+ */
+if ($config_mail['log']) {
+    define('EMAIL_LOG', $config_mail['log']);
+}
+
 /**
  * Function to print input class name on validation
  */
