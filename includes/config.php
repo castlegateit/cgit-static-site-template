@@ -21,13 +21,13 @@ $config_site = [
 $config_smtp = [
 
      // Fallback servers allowed e.g. 'smtp1.example.com;smtp2.example.com'.
-    'host' => 'mail3.gridhost.co.uk',
+    'host' => 'smtp.example.com',
 
      // Enable SMTP authentication.
     'auth' => true,
 
      // SMTP username.
-    'user' => 'test@the-iee.org.uk',
+    'user' => 'user@example.com',
 
      // SMTP password.
     'pass' => 'password',
