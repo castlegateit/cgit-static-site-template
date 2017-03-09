@@ -32,7 +32,7 @@ RewriteRule ^vendor/*$ - [R=404,L]
 # Remove extension
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.php -f
-RewriteRule ^([^\.]+)/$ $1.php [END]
+RewriteRule ^([^\.]+)/$ $1.php [L]
 
 # Block direct .php access
 RewriteRule \.php$ - [R=404]
