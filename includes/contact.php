@@ -80,8 +80,8 @@ if (!empty($config_mail['to'])) {
  * CC.
  */
 if (!empty($config_mail['cc'])) {
-    foreach ($config_mail['cc'] as $email) {
-        $mail->addCC($email);
+    foreach ($config_mail['cc'] as $cc) {
+        $mail->addCC($cc);
     }
 }
 
@@ -89,8 +89,8 @@ if (!empty($config_mail['cc'])) {
  * BCC.
  */
 if (!empty($config_mail['bcc'])) {
-    foreach ($config_mail['bcc'] as $email) {
-        $mail->addBCC($email);
+    foreach ($config_mail['bcc'] as $bcc) {
+        $mail->addBCC($bcc);
     }
 }
 
