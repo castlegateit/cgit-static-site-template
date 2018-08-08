@@ -237,8 +237,7 @@ if (!empty($_POST)) {
         $mail->Body = "Name: $name\n\n" .
             "Email: $email\n\n" .
             "Subject: $subject\n\n" .
-            "Message:\n\n$message\n\n" .
-            "Sender IP: $sender";
+            "Message:\n\n".$message;
 
         // Alternative body in plain text for non HTML mail clients when HTML is used.
         //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
@@ -251,7 +250,7 @@ if (!empty($_POST)) {
             // Write to log file
             if (defined('EMAIL_LOG') && function_exists('fputcsv')) {
                 $log = fopen(EMAIL_LOG, 'a');
-                $row = array(date('Y-m-d H:i'), $name, $email, $message, $sender);
+                $row = array(date('Y-m-d H:i'), $name, $email, $message);
 
                 fputcsv($log, $row);
             }
