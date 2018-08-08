@@ -26,13 +26,14 @@ ErrorDocument 404 /404/
 RewriteRule ^\.git.* - [R=404,L]
 RewriteRule ^LICENSE$ - [R=404,L]
 RewriteRule ^README\.md$ - [R=404,L]
-RewriteRule ^composer\.(json|lock)$ - [R=404,L]
+RewriteRule ^composer\.(json|lock|phar)$ - [R=404,L]
 RewriteRule ^vendor/*$ - [R=404,L]
+RewriteRule ^node_modules/*$ - [R=404,L]
+RewriteRule ^src/*$ - [R=404,L]
+RewriteRule ^gulpfile\.js$ - [R=404,L]
+RewriteRule ^package\.json$ - [R=404,L]
 
 # Remove extension
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.php -f
 RewriteRule ^([^\.]+)/$ $1.php [L]
-
-# Block direct .php access
-RewriteRule \.php$ - [R=404]
