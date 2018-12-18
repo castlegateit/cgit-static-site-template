@@ -2,6 +2,12 @@
 
 A basic static site template written in PHP.
 
+## Requirements ##
+
+*   Apache 2.2 or above
+*   PHP 7.0 or above.
+*   Composer
+
 ## Features ##
 
 *   Basic CSS, based on [Normalize.css](http://necolas.github.io/normalize.css/) and [Terminus](https://github.com/castlegateit/terminus).
