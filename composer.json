@@ -1,5 +1,6 @@
 {
     "require": {
-        "PHPMailer/PHPMailer": "~5.2"
+        "PHPMailer/PHPMailer": "~5.2",
+        "spatie/schema-org": "^2.0"
     }
 }

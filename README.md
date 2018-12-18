@@ -29,6 +29,12 @@ You can add second level pages by placing them in a directory. The "parent" page
 
 The default title, heading, and description are entered in the `$siteinfo` array in the main `config.php` file. These can be overridden on individual pages by editing the `$pageinfo` array at the top of each page. See the default pages for examples.
 
+### Schemas ### 
+
+The default header will inject a basic Organization schema. You need to either add the appropriate data yourself or remove the include.
+To add data to the schema, simply edit the `/includes/config.php` file. You can specify any valid Organization property in the `$config_schema` array and the included `organization.php` file will iterate
+over the array, build the schema script and output it to the page head. 
+
 ### Logs ###
 
 By default, the contact form will log submissions to `/logs/contact.csv` in the document root directory. You may need to set the permissions on this directory to `777` to make this work. Note that this directory is hidden using `.htaccess`.

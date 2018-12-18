@@ -19,8 +19,10 @@ $heading     = $page_info['heading']     ?: $config_site['heading'];
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content="<?php echo $description; ?>" />
 
-<link rel="stylesheet" href="/static/css/style.css" />
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/includes/organization.php'; ?>
 
+<link rel="stylesheet" href="/static/css/style.css" />
+    
 </head>
 
 <body>

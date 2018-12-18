@@ -15,6 +15,14 @@ $config_site = [
     'twitter'      => 'http://twitter.com/example',
 ];
 
+$config_schema = [
+    'name'         => 'Static Site Example Business',
+    'email'        => 'example@example.com',
+    'description'  => 'Example description of the organisation',
+    'url'          => 'http://www.example.com',
+    'address'      => 'Example Unit, Example Complex, Example City, AB1 2CD'
+];
+
 /**
  * SMTP email settings.
  */
